@@ -1,7 +1,4 @@
 let contenido = document.getElementById("contenido")
-let ejercicio6 = document.getElementById("ejercicio6")
-let ejercicio7 = document.getElementById("ejercicio7")
-let ejercicio8 = document.getElementById("ejercicio8")
 
 // Ejercicio 1
 let ejercicio1 = document.getElementById("ejercicio1")
@@ -69,20 +66,71 @@ ejercicio4.addEventListener("click", function() {
 let ejercicio5 = document.getElementById("ejercicio5")
 
 ejercicio5.addEventListener("click", function() {
-    let comienzo = parseInt(prompt("Ingrese el precio original del producto: "))
-    let fin = parseInt(prompt("Ingrese el descuento del producto: "))
+    let comienzo = parseInt(prompt("Ingrese el comienzo de los números primos: "))
+    let fin = parseInt(prompt("Ingrese el final de los números primos: "))
     let primos = []
 
     for (let i = comienzo; i <= fin ; i++) {
-        for (let j = 1; j < fin; j++) {
-            if (j==i) {
-                primos.push(i)
-                break 
+        for (let j = 2; j <= fin; j++) {
+           if (j == i) {
+                primos.push(j)
             } else if (i%j == 0) {
                 break
             }
         }
     }
-    console.log(primos)
+    contenido.innerHTML = "Rango numeros primos: " + primos
 });
 
+// Ejercicio 6
+let ejercicio6 = document.getElementById("ejercicio6")
+
+ejercicio6.addEventListener("click", function() {
+    let secuencia = parseInt(prompt("Ingrese le número de términos de la secuencia de Fibonacci: "))
+
+    function Fibonacci(secuencia) {
+        let resultado = [0,1]
+        for (let i = 1; i < secuencia-1; i++) {
+            resultado.push(resultado[i]+resultado[i-1])
+        }
+        return resultado
+    }
+    contenido.innerHTML = "La secuencia de Fibonacci es: " + Fibonacci(secuencia)
+});
+
+// Ejercicio 7
+let ejercicio7 = document.getElementById("ejercicio7")
+
+ejercicio7.addEventListener("click", function() {
+    let menu = parseInt(prompt("Presione:\n 1) Convertir de Celsius a Fahrenheit\n 2) Convertir de Fahrenheit a Celsius"))
+
+    function conversion(menu) {
+        switch (menu) {
+            case 1:
+                let celsius = parseInt(prompt("Inserte los grados Celsius:"))
+                return celsius+" grados Celsius equivalen a " +((celsius*9/5)+32).toFixed(1)+ " grados Fahrenheit"
+            case 2:
+                let fahrenheit = parseInt(prompt("Inserte los grados fahrenheit:"))
+                return fahrenheit+" grados Fahrenheit equivalen a " +((fahrenheit-32)*5/9).toFixed(1)+ " grados Celsius"
+        }
+    }
+
+    contenido.innerHTML = conversion(menu)
+});
+
+// Ejercicio 8
+let ejercicio8 = document.getElementById("ejercicio8")
+
+ejercicio8.addEventListener("click", function() {
+    let numero = parseInt(prompt("Ingrese un numero para hayar su factorial"))
+
+    function calculateFactorial (numero) {
+        let resultado = numero
+        for (let i = numero; i >= 2 ; i--) {
+            resultado = (i-1)*resultado
+        }
+        return resultado
+    }
+
+    contenido.innerHTML = "El factorial de " + numero + " es: " + calculateFactorial(numero)
+});
